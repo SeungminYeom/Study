@@ -1,8 +1,8 @@
-# Mutex 
+# CriticalSection 
 + 2021.10.07 네트워크 수업
 
-## Mutex 코드
-뮤텍스에서 counter 값이 증가하는 코드  
+## CriticalSection 코드
+크리티컬 섹션에서 키 반납하지 않고 return하는 코드
 ```C++
 #include <WinSock2.h>
 #include <process.h>
@@ -65,3 +65,5 @@ int main() {
 
 ## 실행 결과
 ![Alt text](./img/mutex.PNG)
+
++ 키를 반납하지 않아 1번 스레드의 연산이 끝난 후 다른 스레드가 동작하지 않는다.
