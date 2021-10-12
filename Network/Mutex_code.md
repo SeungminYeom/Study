@@ -63,6 +63,6 @@ int main() {
 ```
 
 ## 실행 결과
-![Alt text](./img/크리티컬 키반납X.PNG)
+![Alt text](./img/mutex.PNG)
 
 + 모든 스레드가 연산을 마쳐 1600000이 출력되었다.
