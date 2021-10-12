@@ -13,21 +13,22 @@ using std::endl;
 
 int counter;
 
-HANDLE hmutex;
+CRITICAL_SECTION cs; //임계영역 키 생성
 
 unsigned __stdcall func(LPVOID param) {
 	int start = *((int*)param);
 	int end = *((int*)param + 1);
 
 	for (int i = start; i < end; i++) {
-		//key 획득
-		WaitForSingleObject(hmutex, INFINITE); // auto reset
-		//이미 hmutex는 non-signal
+
+		// 키 획득
+		EnterCriticalSection(&cs);
 
 		counter++;
+		cout << counter << endl;
 
-		//key 반납
-		ReleaseMutex(hmutex); //hmutex의 상태를 다시 signalled로 변환
+		// 키 반납X
+		//LeaveCriticalSection(&cs);
 	}
 
 	return 0;
@@ -37,8 +38,8 @@ int main() {
 	HANDLE th[16]; // CPU의 스레드 수를 저장하기 위한 배열 선언
 	int arg[] = { 0, 100000 }; // 스레드 당 십만번의 연산을 위해 범위 지정
 
-	// 뮤텍스 커널 오브젝트 생성
-	hmutex = (HANDLE)CreateMutex(NULL, false, NULL);
+	//생성된 키를 초기화
+	InitializeCriticalSection(&cs);
 
 	SYSTEM_INFO info;
 	GetSystemInfo(&info); // 컴퓨터의 스레드 수를 저장
@@ -63,6 +64,4 @@ int main() {
 ```
 
 ## 실행 결과
-![Alt text](./img/크리티컬 키반납X.PNG)
-
-+ 키를 반납하지 않아 1번 스레드의 연산이 끝난 후 다른 스레드가 동작하지 않는다.
+![Alt text](./img/mutex.PNG)
