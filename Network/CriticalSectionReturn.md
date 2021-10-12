@@ -66,6 +66,6 @@ int main() {
 ```
 
 ## 실행 결과
-![Alt text](./img/크리티컬 리턴.PNG)
+![Alt text](./img/크리티컬_리턴.PNG)
 
 + counter가 1일 때 키를 반납하지 않고 return하여 1이 출력된 이후 모든 스레드가 동작하지 않는다.

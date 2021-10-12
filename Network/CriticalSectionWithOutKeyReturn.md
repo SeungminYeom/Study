@@ -64,6 +64,6 @@ int main() {
 ```
 
 ## 실행 결과
-![Alt text](./img/mutex.PNG)
+![Alt text](./img/크리티컬_키반납X.PNG)
 
 + 키를 반납하지 않아 1번 스레드의 연산이 끝난 후 다른 스레드가 동작하지 않는다.
