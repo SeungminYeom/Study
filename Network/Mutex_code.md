@@ -2,6 +2,7 @@
 + 2021.10.07 네트워크 수업
 
 ## Mutex 코드
+뮤텍스에서 counter 값이 증가하는 코드  
 ```C++
 #include <WinSock2.h>
 #include <process.h>
@@ -60,3 +61,6 @@ int main() {
 	return 0;
 }
 ```
+
+## 실행 결과
+![Alt text](./img/mutex.PNG)
