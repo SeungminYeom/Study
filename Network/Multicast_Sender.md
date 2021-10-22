@@ -1,4 +1,5 @@
 # Multicast Sender
+2021.10.21 네트워크 수업
 
 ```c++
 #pragma comment(lib, "ws2_32.lib")
