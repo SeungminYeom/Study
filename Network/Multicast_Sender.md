@@ -37,6 +37,23 @@ int main() {
 	saddr.sin_port = htons(8000);
 	Insert_IP("236.0.0.1", &saddr.sin_addr);
 
+	int ttl = 0;
+	int ttlSize = sizeof(ttl);
+
+	if (getsockopt(c_sock, IPPROTO_IP, IP_MULTICAST_TTL, (char*)&ttl, &ttlSize) == SOCKET_ERROR)
+	{
+		err_display("getsockopt(ttl)");
+		return -1;
+	}
+	cout << ttl << endl;
+
+	ttl = 16;
+	if (setsockopt(c_sock, IPPROTO_IP, IP_MULTICAST_TTL, (char*)&ttl, sizeof(ttl)) == SOCKET_ERROR)
+	{
+		err_display("setsockopt(ttl)");
+		return -1;
+	}
+
 	// 파일 열기
 	FILE* fptr = NULL;
 	fopen_s(&fptr, "news.txt", "r");
@@ -63,6 +80,7 @@ int main() {
 		}
 		Sleep(500); // 밀리세컨드, 1초
 	}
+
 
 
 	closesocket(c_sock);
