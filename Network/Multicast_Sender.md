@@ -39,20 +39,20 @@ int main() {
 
 	int ttl = 0;
 	int ttlSize = sizeof(ttl);
-
 	if (getsockopt(c_sock, IPPROTO_IP, IP_MULTICAST_TTL, (char*)&ttl, &ttlSize) == SOCKET_ERROR)
 	{
 		err_display("getsockopt(ttl)");
 		return -1;
 	}
-	cout << ttl << endl;
+	cout << ttl << endl; // 현재 TTL 값 출력
 
-	ttl = 16;
+	ttl = 16; // TTL 값 변경
 	if (setsockopt(c_sock, IPPROTO_IP, IP_MULTICAST_TTL, (char*)&ttl, sizeof(ttl)) == SOCKET_ERROR)
 	{
 		err_display("setsockopt(ttl)");
 		return -1;
 	}
+	cout << ttl << endl; // 변경한 TTL 값 출력
 
 	// 파일 열기
 	FILE* fptr = NULL;
